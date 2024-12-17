@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Мои аренды</title>
+</head>
+<body>
+<h1>Мои арендованные объекты</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Название объекта</th>
+    <th>Дата начала</th>
+    <th>Дата окончания</th>
+    <th>Статус</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="rental : ${rentals}">
+    <td th:text="${rental.rentalObject.name}"></td>
+    <td th:text="${rental.startDate}"></td>
+    <td th:text="${rental.endDate}"></td>
+    <td th:text="${rental.status}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Аренды</title>
+</head>
+<body>
+<h1>Список активных аренд</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Объект</th>
+    <th>Арендатор</th>
+    <th>Дата начала</th>
+    <th>Дата окончания</th>
+    <th>Статус</th>
+    <th>Действия</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="rental : ${rentals}">
+    <td th:text="${rental.rentalObject.name}"></td>
+    <td th:text="${rental.user.name}"></td>
+    <td th:text="${rental.startDate}"></td>
+    <td th:text="${rental.endDate}"></td>
+    <td th:text="${rental.status}"></td>
+    <td>
+      <form th:action="@{/rentals/complete/{id}(id=${rental.id})}" method="post">
+        <button type="submit" th:if="${rental.status == 'ACTIVE'}">Завершить аренду</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
